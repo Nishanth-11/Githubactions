@@ -1,22 +1,31 @@
 {
-    "family": "hello-world-nodejs-task",
-    "containerDefinitions": [
+  "family": "hello-world-nodejs-task",  # Task family name
+  "networkMode": "awsvpc",               # Using the awsvpc network mode for Fargate
+  "executionRoleArn": "arn:aws:iam::017820671255:role/ecsTaskExecutionRole", # ECS Task Execution Role
+  "containerDefinitions": [
+    {
+      "name": "hello-world-nodejs",      # Container name
+      "image": "017820671255.dkr.ecr.us-west-2.amazonaws.com/my-ecr-repo:latest", # ECR Image URI
+      "memoryReservation": 512,          # Memory limit (soft)
+      "cpu": 256,                        # CPU unit
+      "portMappings": [
         {
-            "name": "hello-world-nodejs",
-            "image": "017820671255.dkr.ecr.us-west-2.amazonaws.com/my-ecr-repo:latest",
-            "cpu": 0,
-            "portMappings": [],
-            "essential": true,
-            "environment": [],
-            "mountPoints": [],
-            "volumesFrom": [],
-            "systemControls": []
+          "containerPort": 3000,         # Exposing port 3000 from the container
+          "hostPort": 3000,
+          "protocol": "tcp"
         }
-    ],
-    "networkMode": "awsvpc",
-    "requiresCompatibilities": [
-        "EC2"
-    ],
-    "cpu": "1024",
-    "memory": "3072"
+      ],
+      "essential": true,                 # Marks this container as essential
+      "environment": [
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        }
+      ]
+    }
+  ],
+  "requiresCompatibilities": ["EC2"],      # Use Fargate
+  "cpu": "1024",                           # Total CPU for the task
+  "memory": "3072",                        # Total memory for the task
+  "taskRoleArn": "arn:aws:iam::017820671255:role/ecsTaskExecutionRole" # Task Role for accessing AWS services
 }
