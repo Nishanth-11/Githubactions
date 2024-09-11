@@ -23,7 +23,7 @@
         }
       ]
     }
-  ],
+  ]
   "requiresCompatibilities": ["EC2"],      # Use Fargate
   "cpu": "1024",                           # Total CPU for the task
   "memory": "3072",                        # Total memory for the task
