@@ -1,0 +1,22 @@
+{
+    "family": "hello-world-nodejs-task",
+    "containerDefinitions": [
+        {
+            "name": "hello-world-nodejs",
+            "image": "017820671255.dkr.ecr.us-west-2.amazonaws.com/my-ecr-repo:latest",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "EC2"
+    ],
+    "cpu": "1024",
+    "memory": "3072"
+}
